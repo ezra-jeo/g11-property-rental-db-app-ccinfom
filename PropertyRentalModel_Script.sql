@@ -21,7 +21,7 @@ USE `propertyRental` ;
 -- Table `propertyRental`.`host`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `propertyRental`.`host` (
-  `hostID` DECIMAL(8,0) UNSIGNED NOT NULL,
+  `hostID` DECIMAL(8,0) NOT NULL,
   `userName` VARCHAR(30) NOT NULL,
   `password` VARCHAR(30) NOT NULL,
   `firstName` VARCHAR(20) NOT NULL,
@@ -30,21 +30,27 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`host` (
   `joinDate` DATE NOT NULL,
   `email` VARCHAR(25) NULL,
   `phoneNumber` VARCHAR(20) NULL,
-  `earnings` DECIMAL(10,2) ZEROFILL UNSIGNED NOT NULL,
+  `earnings` DECIMAL(10,2) ZEROFILL NOT NULL,
   PRIMARY KEY (`hostID`),
   UNIQUE INDEX `userName_UNIQUE` (`userName` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+INSERT INTO `propertyRental`.`host` (`hostID`, `userName`, `password`, `firstName`, `lastName`, `description`, `joinDate`, `email`, `phoneNumber`, `earnings`) VALUES
+(10000001, 'hostUser1', 'pass1234', 'John', 'Doe', 'Experienced host in urban areas', '2023-01-10', 'john.doe@example.com', '1234567890', 000001500.00),
+(10000002, 'hostUser2', 'pass5678', 'Jane', 'Smith', 'Specializes in cozy rural stays', '2023-02-15', 'jane.smith@example.com', '0987654321', 000000750.50),
+(10000003, 'hostUser3', 'pass9101', 'Alice', 'Johnson', 'Luxury apartment provider', '2023-03-20', 'alice.j@example.com', '5678901234', 000002300.75),
+(10000004, 'hostUser4', 'pass1123', 'Bob', 'Brown', 'Friendly and attentive host', '2023-04-05', 'bob.brown@example.com', '6789012345', 000001200.30),
+(10000005, 'hostUser5', 'pass3141', 'Charlie', 'Davis', 'Great locations in the city center', '2023-05-10', 'charlie.d@example.com', '7890123456', 000000900.00);
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`propertyListing`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `propertyRental`.`propertyListing` (
-  `propertyListingID` DECIMAL(8,0) UNSIGNED NOT NULL,
-  `hostID` DECIMAL(8,0) UNSIGNED NOT NULL,
+  `propertyListingID` DECIMAL(8,0) NOT NULL,
+  `hostID` DECIMAL(8,0) NOT NULL,
   `listingName` VARCHAR(50) NOT NULL,
   `description` VARCHAR(250) NULL,
-  `pricePerNight` DECIMAL(10,2) UNSIGNED ZEROFILL NOT NULL,
+  `pricePerNight` DECIMAL(10,2) ZEROFILL NOT NULL,
   `street` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `province` VARCHAR(45) NOT NULL,
@@ -59,12 +65,18 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`propertyListing` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `propertyRental`.`propertyListing` (`propertyListingID`, `hostID`, `listingName`, `description`, `pricePerNight`, `street`, `city`, `province`, `country`, `status`) VALUES
+(20000001, 10000001, 'Urban Oasis', 'Modern apartment in downtown', 00000150.00, '123 Main St', 'New York', 'NY', 'USA', 'Available'),
+(20000002, 10000002, 'Country Retreat', 'Cozy cabin surrounded by nature', 00000090.00, '45 Oak Lane', 'Asheville', 'NC', 'USA', 'Available'),
+(20000003, 10000003, 'Luxury Loft', 'Spacious loft with skyline views', 00000300.00, '789 High St', 'Chicago', 'IL', 'USA', 'Available'),
+(20000004, 10000004, 'City Central', 'Conveniently located apartment', 00000120.00, '567 Pine St', 'San Francisco', 'CA', 'USA', 'Unavailable'),
+(20000005, 10000005, 'Beachside Villa', 'Relaxing stay by the beach', 00000200.00, '321 Ocean Ave', 'Miami', 'FL', 'USA', 'Available');
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`guest`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `propertyRental`.`guest` (
-  `guestID` DECIMAL(8,0) UNSIGNED NOT NULL,
+  `guestID` DECIMAL(8,0)  NOT NULL,
   `userName` VARCHAR(30) NOT NULL,
   `password` VARCHAR(30) NOT NULL,
   `firstName` VARCHAR(20) NOT NULL,
@@ -77,15 +89,21 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`guest` (
   UNIQUE INDEX `userName_UNIQUE` (`userName` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+INSERT INTO `propertyRental`.`guest` (`guestID`, `userName`, `password`, `firstName`, `lastName`, `description`, `joinDate`, `email`, `phoneNumber`) VALUES
+(30000001, 'guestUser1', 'guest1234', 'David', 'Wilson', 'Frequent traveler', '2023-01-01', 'david.wilson@example.com', '1231231234'),
+(30000002, 'guestUser2', 'guest5678', 'Emily', 'Taylor', 'Adventure seeker', '2023-02-10', 'emily.taylor@example.com', '2342342345'),
+(30000003, 'guestUser3', 'guest9101', 'Michael', 'Martinez', 'Business traveler', '2023-03-15', 'michael.m@example.com', '3453453456'),
+(30000004, 'guestUser4', 'guest1123', 'Sarah', 'Anderson', 'Family vacationer', '2023-04-20', 'sarah.ad@example.com', '4564564567'),
+(30000005, 'guestUser5', 'guest3141', 'Chris', 'Lee', 'Culture enthusiast', '2023-05-25', 'chris.lee@example.com', '5675675678');
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`reservation`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `propertyRental`.`reservation` (
-  `reservationID` DECIMAL(8,0) UNSIGNED NOT NULL,
-  `guestID` DECIMAL(8,0) UNSIGNED NOT NULL,
-  `hostID` DECIMAL(8,0) UNSIGNED NOT NULL,
-  `propertyListingID` DECIMAL(8,0) UNSIGNED NOT NULL,
+  `reservationID` DECIMAL(8,0)  NOT NULL,
+  `guestID` DECIMAL(8,0)  NOT NULL,
+  `hostID` DECIMAL(8,0)  NOT NULL,
+  `propertyListingID` DECIMAL(8,0)  NOT NULL,
   `startDate` DATE NOT NULL,
   `endDate` DATE NOT NULL,
   `totalPrice` DECIMAL(10,2) ZEROFILL NOT NULL,
@@ -116,9 +134,9 @@ ENGINE = InnoDB;
 -- Table `propertyRental`.`hostRating`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `propertyRental`.`hostRating` (
-  `reservationID` DECIMAL(8,0) UNSIGNED NOT NULL,
+  `reservationID` DECIMAL(8,0)  NOT NULL,
   `review` VARCHAR(250) NULL,
-  `rating` DECIMAL(3,2) UNSIGNED NOT NULL,
+  `rating` DECIMAL(3,2)  NOT NULL,
   INDEX `reservationID_idx` (`reservationID` ASC) VISIBLE,
   PRIMARY KEY (`reservationID`),
   CONSTRAINT `reservationID_host_fk`
@@ -133,9 +151,9 @@ ENGINE = InnoDB;
 -- Table `propertyRental`.`propertyRating`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `propertyRental`.`propertyRating` (
-  `reservationID` DECIMAL(8,0) UNSIGNED NOT NULL,
+  `reservationID` DECIMAL(8,0)  NOT NULL,
   `review` VARCHAR(250) NULL,
-  `rating` DECIMAL(3,2) UNSIGNED NOT NULL,
+  `rating` DECIMAL(3,2)  NOT NULL,
   PRIMARY KEY (`reservationID`),
   CONSTRAINT `reservationID_property_fk`
     FOREIGN KEY (`reservationID`)
@@ -149,9 +167,9 @@ ENGINE = InnoDB;
 -- Table `propertyRental`.`guestRating`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `propertyRental`.`guestRating` (
-  `reservationID` DECIMAL(8,0) UNSIGNED NOT NULL,
+  `reservationID` DECIMAL(8,0)  NOT NULL,
   `review` VARCHAR(250) NULL,
-  `rating` DECIMAL(3,2) UNSIGNED NOT NULL,
+  `rating` DECIMAL(3,2)  NOT NULL,
   INDEX `reservationID_idx` (`reservationID` ASC) VISIBLE,
   PRIMARY KEY (`reservationID`),
   CONSTRAINT `reservationID_guest_fk`
@@ -166,9 +184,9 @@ ENGINE = InnoDB;
 -- Table `propertyRental`.`transaction`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `propertyRental`.`transaction` (
-  `transactionID` DECIMAL(8,0) UNSIGNED NOT NULL,
-  `reservationID` DECIMAL(8,0) UNSIGNED NOT NULL,
-  `amount` DECIMAL(10,2) ZEROFILL UNSIGNED NOT NULL,
+  `transactionID` DECIMAL(8,0)  NOT NULL,
+  `reservationID` DECIMAL(8,0)  NOT NULL,
+  `amount` DECIMAL(10,2) ZEROFILL  NOT NULL,
   `mode` VARCHAR(50) NOT NULL,
   `date` DATE NOT NULL,
   `type` ENUM("Payment", "Refund") NOT NULL,
