@@ -1,5 +1,5 @@
 <%-- 
-    Document   : generate_property_report
+    Document   : getProperty_host
     Created on : Nov 22, 2024, 7:39:27 PM
     Author     : Ezra
 --%>
@@ -10,11 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Generate Property Listing Performance Report</title>
+        <title>Get Property By Host</title>
     </head>
     <body>
-        <form action="generate_property_process.jsp">
-            Host UserName: <input type="text" id="host_name" name="host_name"><br>
+        <form action="getProperty_host_process.jsp">
+            Enter host username: <input type="text" id="host_name" name="host_name"><br>
             <input type="submit" value="submit">
         </form>
     </body>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Rate a host</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Submit Host Rating</h1>
+        <form method="post" action="addHostRating_process.jsp">
+            <!-- Input for Reservation ID -->
+            <label for="reservationID">Reservation ID:</label>
+            <input type="number" id="reservationID" name="reservationID" required><br><br>
+            
+            <!-- Input for Rating -->
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" step="0.1" min="0" max="5" required><br><br>
+            
+            <!-- Input for Review -->
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" rows="4" cols="50" placeholder="Write your review here..." required></textarea><br><br>
+            
+            <!-- Submit Button -->
+            <input type="submit" value="Submit Rating">
+        </form>
+    </body>
+</html>
