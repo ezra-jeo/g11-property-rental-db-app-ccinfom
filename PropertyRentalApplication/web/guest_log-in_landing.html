@@ -5,16 +5,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
-        <title>Host</title>
+        <title>Guest Log-In</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form action="log-in_host.jsp">
-            Host User Name:<input type="text" id="userName" name="userName"><br>
-            Password: <input type="password" id="password" name="password"><br>
+        <form action="log-in_guest.jsp">
+            Guest User Name: <input type="text" id="userName" name="userName" required><br>
+            Password: <input type="password" id="password" name="password" required><br>
             <input type="submit" value="Log-in"><br>     
         </form>
-        <button onclick ="window.location.href='sign-in_host.html'"> Sign-in</button>
+        <button onclick ="window.location.href='guest_sign-in_landing.html'"> Sign-in</button>
+        <br><button onclick ="window.location.href='index.html'"> Back</button>
     </body>
 </html>

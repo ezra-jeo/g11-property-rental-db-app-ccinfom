@@ -27,8 +27,7 @@ public class host {
     
     public ArrayList<host> hostList = new ArrayList<>();
     
-    public host(String userName, String password, String firstName, String lastName,
-                String description, String email, String phoneNumber) {
+    public host(String userName, String password, String firstName, String lastName, String description, String email, String phoneNumber) {
         this.hostID = 0;
         this.userName = userName;
         this.password = password;
@@ -36,6 +35,18 @@ public class host {
         this.lastName = lastName;
         this.description = description;
         this.joinDate = Date.valueOf(LocalDate.now());
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public host(int hostID, String userName, String password, String firstName, String lastName, String description, Date joinDate, String email, String phoneNumber) {
+        this.hostID = hostID;
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.description = description;
+        this.joinDate = joinDate;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
@@ -111,20 +122,17 @@ public class host {
             
             ps.close();
             conn.close();
-            
-            if (count > 0)
-                return 0;
                        
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
             return 0;
         }
         
-        return 1;
+        return count;
     }
     
     public static int checkHostAccount(String checkUserName, String checkPassword) {
-        int accountID = 0;
+        int accountID = -1;
         
         String url = "jdbc:mysql://localhost:3306/propertyRental";
         String userDB = "root";
@@ -161,13 +169,130 @@ public class host {
         return accountID;
     }
     
-    public static void main (String args[]) {
-        //host h = new host("A", "B", "C", "D","E", "F", "G");
-        //h.createHost();
+    public static host getHostRecord(int hostID) {
+        host hostRecord = null;
         
-        //System.out.println(host.checkHostUserName("A"));
+        String url = "jdbc:mysql://localhost:3306/propertyRental";
+        String userDB = "root";
+        String passwordDB = "ethanaxl1";
         
-        System.out.println(host.checkHostAccount("A","C"));
+        Connection conn = null;
+        
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
+            conn = DriverManager.getConnection(url, userDB, passwordDB);
+            
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM host WHERE hostID = ? ;");
+            ps.setInt(1, hostID);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                hostRecord = new host(rs.getInt("hostID"), rs.getString("userName"), rs.getString("password"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("description"), rs.getDate("joinDate"), rs.getString("email"), rs.getString("phoneNumber"));
+            }
+            
+            ps.close();
+            conn.close();
+                       
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+        return hostRecord;
+    }
+    
+    public static ArrayList<host> getHostRecords() {
+        ArrayList<host> hostRecords = new ArrayList<>();
+        
+        String url = "jdbc:mysql://localhost:3306/propertyRental";
+        String userDB = "root";
+        String passwordDB = "ethanaxl1";
+        
+        Connection conn = null;
+        
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            conn = DriverManager.getConnection(url, userDB, passwordDB);
+            
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM host;");
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                hostRecords.add(new host(rs.getInt("hostID"), rs.getString("userName"), rs.getString("password"), rs.getString("firstName"), rs.getString("lastName"), rs.getString("description"), rs.getDate("joinDate"), rs.getString("email"), rs.getString("phoneNumber")));
+            }
+            
+            ps.close();
+            conn.close();
+                       
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+        return hostRecords;
+    }
+    
+    public static void updateHostRecord(int hostID, String userName, String password, String firstName, String lastName, String description, String email, String phoneNumber) {
+        String url = "jdbc:mysql://localhost:3306/propertyRental";
+        String userDB = "root";
+        String passwordDB = "ethanaxl1";
+        
+        Connection conn = null;
+                
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            conn = DriverManager.getConnection(url, userDB, passwordDB);
+            
+            PreparedStatement ps = conn.prepareStatement("UPDATE host SET userName = ?, password = ?, firstName = ?, lastName = ?, description = ?, email = ?, phoneNumber = ? WHERE hostID = ?");
+            ps.setString(1, userName);
+            ps.setString(2, password);
+            ps.setString(3, firstName);
+            ps.setString(4, lastName);
+            ps.setString(5, description);
+            ps.setString(6, email);
+            ps.setString(7, phoneNumber);
+            ps.setInt(8, hostID);
+            ps.executeUpdate();
+            
+            ps.close();
+            conn.close();
+                       
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void deleteHostRecord(int hostID) {
+        String url = "jdbc:mysql://localhost:3306/propertyRental";
+        String userDB = "root";
+        String passwordDB = "ethanaxl1";
+        
+        Connection conn = null;
+        
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            conn = DriverManager.getConnection(url, userDB, passwordDB);
+            
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM host WHERE hostID = ? ;");
+            ps.setInt(1, hostID);
+            ps.executeUpdate();
+            
+            ps.close();
+            conn.close();
+                       
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void main (String args[]) {
     }
 }
