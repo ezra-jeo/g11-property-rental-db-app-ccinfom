@@ -8,7 +8,7 @@
         <title>Host Delete</title>
     </head>
     <body>
-        <%
+        <%      
             int hostID = Integer.parseInt(request.getParameter("hostID"));
             ArrayList<reservation> reservationList = reservation.getReservationHost(hostID);
             
@@ -16,12 +16,21 @@
                 host.deleteHostRecord(hostID);
                 Property p = new Property();
                 p.deleteListingHost(hostID);
-                out.println("<h2>Host Account with ID: " + hostID + " And Listing/s Have Been Deleted Successfuly!</h2>");
-            }
-            else {
-                out.println("<h2>Host Account with ID: " + hostID + " Have Existing Reservations!</h2>");
+        %>
+        <h2>Host Account with ID: <%= hostID %> And Listing/s Have Been Deleted Successfully!</h2>
+                <br>
+                <button onclick="window.location.href='index.html'">Back To Main Menu</button>
+                <br>
+        <%
+            } else {
+                session.setAttribute("hostID", hostID);
+
+        %>
+                <h2><h2>Host Account with ID: <%= hostID %> Have Existing Reservations!</h2></h2>
+                <br>
+                <button onclick="window.location.href='host_main.jsp'">Back</button>
+        <%
             }
         %>
-            <br><button onclick ="window.location.href='index.html'"> Back </button>
     </body>
 </html>

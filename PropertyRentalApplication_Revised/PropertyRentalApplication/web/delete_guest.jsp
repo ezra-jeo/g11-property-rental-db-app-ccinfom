@@ -14,13 +14,21 @@
             
             if (reservationList.size() == 0) {
                 guest.deleteGuestRecord(guestID);
-                out.println("<h2>Guest Account with ID: " + guestID + " Deleted Successfuly!</h2>");
-            }
-            else {
-                out.println("<h2>Guest Account with ID: " + guestID + " Have Existing Reservations!</h2>");
-            }
-            
         %>
-            <br><button onclick ="window.location.href='index.html'"> Back To Main Menu</button>
+                <h2>Guest Account with ID: <%= guestID %> Deleted Successfully!</h2>
+                <br>
+                <button onclick="window.location.href='index.html'">Back To Main Menu</button>
+                <br>
+        <%
+            } else {
+                session.setAttribute("guestID", guestID);
+
+        %>
+                <h2>Guest Account with ID: <%= guestID %> Has Existing Reservations!</h2>
+                <br>
+                <button onclick="window.location.href='guest_main.jsp'">Back</button>
+        <%
+            }
+        %>
     </body>
 </html>

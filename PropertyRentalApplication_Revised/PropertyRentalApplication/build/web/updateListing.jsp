@@ -71,14 +71,13 @@
                 </select><br><br>
 
                 <input type="submit" value="Update Listing">
-            </form><br>
-            <a href="host_main.jsp">
-                    <button type="button">Back</button>
-            </a>
-
             <%
                 }
             }
         %>
+            </form><br>
+            <a href="host_main.jsp">
+                    <button type="button">Back</button>
+            </a>
     </body>
 </html>

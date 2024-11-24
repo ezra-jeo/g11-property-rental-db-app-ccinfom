@@ -37,7 +37,7 @@
             </select><br><br>
             <input type="submit" value="Submit">
         </form><br>
-        <a href="host_main.jsp">
+        <a href="guest_main.jsp">
                 <button type="button">Back</button>
         </a>
     </body>
