@@ -30,17 +30,16 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`host` (
   `joinDate` DATE NOT NULL,
   `email` VARCHAR(25) NULL,
   `phoneNumber` VARCHAR(20) NULL,
-  `earnings` DECIMAL(10,2) ZEROFILL NOT NULL,
   PRIMARY KEY (`hostID`),
   UNIQUE INDEX `userName_UNIQUE` (`userName` ASC) VISIBLE)
 ENGINE = InnoDB;
 
-INSERT INTO `propertyRental`.`host` (`hostID`, `userName`, `password`, `firstName`, `lastName`, `description`, `joinDate`, `email`, `phoneNumber`, `earnings`) VALUES
-(10000001, 'hostUser1', 'pass1234', 'John', 'Doe', 'Experienced host in urban areas', '2023-01-10', 'john.doe@example.com', '1234567890', 000001500.00),
-(10000002, 'hostUser2', 'pass5678', 'Jane', 'Smith', 'Specializes in cozy rural stays', '2023-02-15', 'jane.smith@example.com', '0987654321', 000000750.50),
-(10000003, 'hostUser3', 'pass9101', 'Alice', 'Johnson', 'Luxury apartment provider', '2023-03-20', 'alice.j@example.com', '5678901234', 000002300.75),
-(10000004, 'hostUser4', 'pass1123', 'Bob', 'Brown', 'Friendly and attentive host', '2023-04-05', 'bob.brown@example.com', '6789012345', 000001200.30),
-(10000005, 'hostUser5', 'pass3141', 'Charlie', 'Davis', 'Great locations in the city center', '2023-05-10', 'charlie.d@example.com', '7890123456', 000000900.00);
+INSERT INTO `propertyRental`.`host` (`hostID`, `userName`, `password`, `firstName`, `lastName`, `description`, `joinDate`, `email`, `phoneNumber`) VALUES
+(10000001, 'hostUser1', 'pass1234', 'John', 'Doe', 'Experienced host in urban areas', '2023-01-10', 'john.doe@example.com', '1234567890'),
+(10000002, 'hostUser2', 'pass5678', 'Jane', 'Smith', 'Specializes in cozy rural stays', '2023-02-15', 'jane.smith@example.com', '0987654321'),
+(10000003, 'hostUser3', 'pass9101', 'Alice', 'Johnson', 'Luxury apartment provider', '2023-03-20', 'alice.j@example.com', '5678901234'),
+(10000004, 'hostUser4', 'pass1123', 'Bob', 'Brown', 'Friendly and attentive host', '2023-04-05', 'bob.brown@example.com', '6789012345'),
+(10000005, 'hostUser5', 'pass3141', 'Charlie', 'Davis', 'Great locations in the city center', '2023-05-10', 'charlie.d@example.com', '7890123456');
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`propertyListing`
@@ -55,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`propertyListing` (
   `city` VARCHAR(45) NOT NULL,
   `province` VARCHAR(45) NOT NULL,
   `country` VARCHAR(45) NOT NULL,
-  `status` VARCHAR(45) NOT NULL,
+  `status` ENUM('Available', 'Unavailable') NOT NULL,
   PRIMARY KEY (`propertyListingID`),
   INDEX `hostID_idx` (`hostID` ASC) VISIBLE,
   CONSTRAINT `hostID_property_fk`
@@ -107,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`reservation` (
   `startDate` DATE NOT NULL,
   `endDate` DATE NOT NULL,
   `totalPrice` DECIMAL(10,2) ZEROFILL NOT NULL,
-  `status` ENUM('paid', 'unpaid', 'incomplete') NOT NULL,
   PRIMARY KEY (`reservationID`),
   INDEX `hostID_idx` (`hostID` ASC) VISIBLE,
   INDEX `guestID_idx` (`guestID` ASC) VISIBLE,
@@ -129,6 +127,20 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`reservation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `propertyRental`.`reservation` 
+(`reservationID`, `guestID`, `hostID`, `propertyListingID`, `startDate`, `endDate`, `totalPrice`)
+VALUES
+(10000001, 10000001, 10000001, 10000001, '2024-01-01', '2024-01-07', 001000.00),
+(10000002, 10000002, 10000002, 10000002, '2024-01-10', '2024-01-12', 000600.00),
+(10000003, 10000003, 10000003, 10000003, '2024-02-01', '2024-02-05', 000800.00),
+(10000004, 10000004, 10000004, 10000004, '2024-02-10', '2024-02-15', 001500.00),
+(10000005, 10000005, 10000005, 10000005, '2024-03-01', '2024-03-07', 002000.00),
+(10000006, 10000001, 10000002, 10000001, '2024-03-10', '2024-03-14', 001200.00),
+(10000007, 10000002, 10000003, 10000002, '2024-03-15', '2024-03-20', 001500.00),
+(10000008, 10000003, 10000004, 10000003, '2024-03-25', '2024-03-30', 001800.00),
+(10000009, 10000004, 10000005, 10000004, '2024-04-01', '2024-04-07', 002100.00),
+(10000010, 10000005, 10000001, 10000005, '2024-04-15', '2024-04-20', 001700.00);
+
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`hostRating`
@@ -146,6 +158,19 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`hostRating` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `propertyRental`.`hostRating` 
+(`reservationID`, `review`, `rating`)
+VALUES
+(10000001, 'Amazing host, very helpful!', 4.50),
+(10000002, 'Host was unresponsive at times.', 3.00),
+(10000003, 'Great experience, will book again!', 5.00),
+(10000004, 'Very accommodating and friendly.', 4.80),
+(10000005, 'Host canceled at the last minute.', 2.00),
+(10000006, 'Host provided excellent tips!', 4.70),
+(10000007, 'Quick responses, great communication.', 4.40),
+(10000008, 'Host forgot to provide check-in instructions.', 3.50),
+(10000009, 'Host was professional and polite.', 4.90),
+(10000010, 'Wonderful stay, highly recommend.', 5.00);
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`propertyRating`
@@ -161,6 +186,20 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`propertyRating` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+INSERT INTO `propertyRental`.`propertyRating` 
+(`reservationID`, `review`, `rating`)
+VALUES
+(10000001, 'Beautiful property, well-maintained.', 4.80),
+(10000002, 'Property wasn’t as clean as expected.', 3.20),
+(10000003, 'Fantastic view and cozy environment.', 4.90),
+(10000004, 'Property was spacious and modern.', 5.00),
+(10000005, 'Amenities were lacking.', 2.50),
+(10000006, 'Great location and clean property.', 4.70),
+(10000007, 'Good value for the price.', 4.30),
+(10000008, 'Noisy neighborhood but decent property.', 3.80),
+(10000009, 'Exceeded expectations, highly recommend!', 5.00),
+(10000010, 'A memorable stay, excellent property.', 4.90);
 
 
 -- -----------------------------------------------------
@@ -179,6 +218,19 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`guestRating` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `propertyRental`.`guestRating` 
+(`reservationID`, `review`, `rating`)
+VALUES
+(10000001, 'Guest was respectful and clean.', 5.00),
+(10000002, 'Guest left property messy.', 2.80),
+(10000003, 'Very polite and easy to communicate with.', 4.90),
+(10000004, 'Guest followed all house rules.', 4.70),
+(10000005, 'Guest was late for check-out.', 3.50),
+(10000006, 'Friendly guest, no issues.', 4.80),
+(10000007, 'Guest damaged a few items.', 2.50),
+(10000008, 'Smooth experience with the guest.', 4.60),
+(10000009, 'Great guest, welcome back anytime!', 5.00),
+(10000010, 'Left the place cleaner than expected.', 5.00);
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`transaction`
@@ -189,7 +241,6 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`transaction` (
   `amount` DECIMAL(10,2) ZEROFILL  NOT NULL,
   `mode` VARCHAR(50) NOT NULL,
   `date` DATE NOT NULL,
-  `type` ENUM("Payment", "Refund") NOT NULL,
   PRIMARY KEY (`transactionID`),
   INDEX `fk_transaction_reservation1_idx` (`reservationID` ASC) VISIBLE,
   CONSTRAINT `fk_transaction_reservation10`
@@ -198,6 +249,20 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`transaction` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+INSERT INTO `propertyRental`.`transaction` 
+(`transactionID`, `reservationID`, `amount`, `mode`, `date`)
+VALUES
+(10000001, 10000001, 001000.00, 'Credit Card', '2024-01-02'),
+(10000002, 10000002, 000600.00, 'PayPal', '2024-01-11'),
+(10000003, 10000003, 000800.00, 'Debit Card', '2024-02-02'),
+(10000004, 10000004, 001500.00, 'Credit Card', '2024-02-11'),
+(10000005, 10000005, 002000.00, 'Bank Transfer', '2024-03-02'),
+(10000006, 10000006, 001200.00, 'PayPal', '2024-03-11'),
+(10000007, 10000007, 001500.00, 'Debit Card', '2024-03-16'),
+(10000008, 10000008, 001800.00, 'Credit Card', '2024-03-26'),
+(10000009, 10000009, 002100.00, 'Bank Transfer', '2024-04-02'),
+(10000010, 10000010, 001700.00, 'PayPal', '2024-04-16');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
