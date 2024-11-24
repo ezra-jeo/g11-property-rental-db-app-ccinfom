@@ -12,7 +12,7 @@
             <jsp:useBean id="property" class="propertyRental.Property" scope="session"/>
             <% 
                 int v_propertyListingID = Integer.parseInt(request.getParameter("propertyListingID"));
-                int v_hostID = Integer.parseInt(request.getParameter("host_ID")); 
+                int v_hostID = Integer.parseInt(request.getParameter("hostID")); 
                 String v_listingName = request.getParameter("listingName");       
                 String v_description = request.getParameter("description");       
                 double v_pricePerNight = Double.parseDouble(request.getParameter("pricePerNight")); 

@@ -13,20 +13,14 @@
         <jsp:useBean id="property" class="propertyRental.Property" scope="session"/>
         <h1>Update Listing</h1>
         
-        <!-- Step 1: Select a listing -->
-        <form method="get" action="updateListing.jsp">
-            Enter Host ID: <input type="text" id="host_ID" name="host_ID" value="<%= request.getParameter("host_ID") != null ? request.getParameter("host_ID") : "" %>" required>
-            <button type="submit">Get Listings</button>
-        </form>
-
         <%
-            String hostID_input = request.getParameter("host_ID");
+            String hostID_input = request.getParameter("hostID");
             if (hostID_input != null && !hostID_input.trim().isEmpty()) {
         %>
 
             <!-- Step 2: Display listings for the selected Host -->
             <form method="post" action="updateListing.jsp">
-                <input type="hidden" name="host_ID" value="<%= hostID_input %>">
+                <input type="hidden" name="hostID" value="<%= hostID_input %>">
 
                 <select id="propertyListingID" name="propertyListingID" required>
                     <%
@@ -53,7 +47,7 @@
 
             <!-- Step 3: Display pre-filled form for editing -->
             <form method="post" action="updateListing_process.jsp">
-                <input type="hidden" name="host_ID" value="<%= hostID_input %>">
+                <input type="hidden" name="hostID" value="<%= hostID_input %>">
                 <input type="hidden" name="propertyListingID" value="<%= property.getID() %>">
 
                 Listing Name: <input type="text" id="listingName" name="listingName" value="<%= property.getListingName() %>" required><br><br>
