@@ -41,7 +41,8 @@
                 <li>Guest: <%= guestRecord.userName %></li>
                 <li>Property: <%= propertyName %></li>
                 <li>Date: <%= reservationList.get(i).startDate %> - <%= reservationList.get(i).endDate %></li>
-               <li>Amount & Mode: <%= amount %> (<%= mode %>)</li>
+                <li>Total Price: <%= reservationList.get(i).totalPrice %></li>
+               <li>Payment Amount & Mode: <%= amount %> (<%= mode %>)</li>
             </ul>
         </li>
         <%
