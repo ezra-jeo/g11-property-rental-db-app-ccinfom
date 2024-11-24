@@ -47,7 +47,7 @@ public class Property {
         
     }
     
-    public int getProperties(String hostName) {
+    public int getProperties(int hostID) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -58,19 +58,10 @@ public class Property {
             );
             
             PreparedStatement st = conn.prepareStatement("SELECT "
-                    + "pl.propertyListingID, "
-                    + "pl.hostID, "
-                    + "pl.listingName, "
-                    + "pl.description, "
-                    + "pl.pricePerNight, "
-                    + "pl.street, pl.city, "
-                    + "pl.province, pl.country, "
-                    + "pl.status "
                     + "FROM propertylisting pl "
-                    + "JOIN host h ON h.hostID = pl.hostID "
-                    + "WHERE h.userName = ?");
+                    + "WHERE pl.hostID = ?");
             
-            st.setString(1, hostName);
+            st.setInt(1, hostID);
             ResultSet rs = st.executeQuery();
             this.propertyList = new ArrayList<>();
             while (rs.next()) {
@@ -326,7 +317,7 @@ public class Property {
     }
 }
     
-        public int deleteListingHost(int hostID) {
+    public int deleteListingHost(int hostID) {
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -388,7 +379,6 @@ public class Property {
         
         return name;
     }
-    
     
     public int adaptListing(int propertyListingID) {
         try {
@@ -611,7 +601,7 @@ public class Property {
         this.status = status;
     }
     
-     public static int getHostIDProperty(int propertyID) {
+    public static int getHostIDProperty(int propertyID) {
         int p = 0;
         
         String url = "jdbc:mysql://localhost:3306/propertyRental";

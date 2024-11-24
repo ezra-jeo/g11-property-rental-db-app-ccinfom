@@ -11,18 +11,12 @@
     </head>
     <body>
         <jsp:useBean id="property" class="propertyRental.Property" scope="session"/>
-        <form method="get" action="deleteListing.jsp">
-            <h1>Delete Listing</h1>
-            Enter Host ID: <input type="text" id="host_ID" name="host_ID" value="<%= request.getParameter("host_ID") != null ? request.getParameter("host_ID") : "" %>" required>
-            <button type="submit">Get Listings</button>
-        </form>
-
         <%
-            String hostID_input = request.getParameter("host_ID");
+            String hostID_input = request.getParameter("hostID");
             if (hostID_input != null && !hostID_input.trim().isEmpty()) {
         %>
             <form method="post" action="deleteListing_process.jsp">
-                <input type="hidden" name="host_ID" value="<%= hostID_input %>">
+                <input type="hidden" name="hostID" value="<%= hostID_input %>">
 
                 <select id="propertyListingID" name="propertyListingID" required>
                     <%

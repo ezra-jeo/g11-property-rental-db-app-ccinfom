@@ -11,9 +11,10 @@
     </head>
     <body>
             <jsp:useBean id="property" class="propertyRental.Property" scope="session"/>
+            <h1>View Listing</h1>
             <% 
-                String v_hostName = request.getParameter("host_name");
-                int status = property.getProperties(v_hostName);
+                String v_hostID = request.getParameter("hostID");
+                int status = property.getProperties(v_hostID);
                
                 if (status == 1) {
                     out.println("<h1>View Listings</h1><br>");
