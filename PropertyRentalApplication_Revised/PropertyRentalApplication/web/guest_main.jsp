@@ -38,6 +38,7 @@
         <form action="addHostRating.jsp" method="POST">
             <input type="hidden" name="guestID" value="<%= guestID%>">
             <button type="submit"> Add Host Ratings</button>
+        </form>
         <br><form action="viewPropertyRating.jsp" method="POST">
             <input type="hidden" name="guestID" value="<%= guestID%>">
             <button type="submit"> View Property Ratings</button>
