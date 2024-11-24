@@ -65,11 +65,11 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`propertyListing` (
 ENGINE = InnoDB;
 
 INSERT INTO `propertyRental`.`propertyListing` (`propertyListingID`, `hostID`, `listingName`, `description`, `pricePerNight`, `street`, `city`, `province`, `country`, `status`) VALUES
-(20000001, 10000001, 'Urban Oasis', 'Modern apartment in downtown', 00000150.00, '123 Main St', 'New York', 'NY', 'USA', 'Available'),
-(20000002, 10000002, 'Country Retreat', 'Cozy cabin surrounded by nature', 00000090.00, '45 Oak Lane', 'Asheville', 'NC', 'USA', 'Available'),
-(20000003, 10000003, 'Luxury Loft', 'Spacious loft with skyline views', 00000300.00, '789 High St', 'Chicago', 'IL', 'USA', 'Available'),
-(20000004, 10000004, 'City Central', 'Conveniently located apartment', 00000120.00, '567 Pine St', 'San Francisco', 'CA', 'USA', 'Unavailable'),
-(20000005, 10000005, 'Beachside Villa', 'Relaxing stay by the beach', 00000200.00, '321 Ocean Ave', 'Miami', 'FL', 'USA', 'Available');
+(10000001, 10000001, 'Urban Oasis', 'Modern apartment in downtown', 00000150.00, '123 Main St', 'New York', 'NY', 'USA', 'Available'),
+(10000002, 10000002, 'Country Retreat', 'Cozy cabin surrounded by nature', 00000090.00, '45 Oak Lane', 'Asheville', 'NC', 'USA', 'Available'),
+(10000003, 10000003, 'Luxury Loft', 'Spacious loft with skyline views', 00000300.00, '789 High St', 'Chicago', 'IL', 'USA', 'Available'),
+(10000004, 10000004, 'City Central', 'Conveniently located apartment', 00000120.00, '567 Pine St', 'San Francisco', 'CA', 'USA', 'Unavailable'),
+(10000005, 10000005, 'Beachside Villa', 'Relaxing stay by the beach', 00000200.00, '321 Ocean Ave', 'Miami', 'FL', 'USA', 'Available');
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`guest`
@@ -89,11 +89,11 @@ CREATE TABLE IF NOT EXISTS `propertyRental`.`guest` (
 ENGINE = InnoDB;
 
 INSERT INTO `propertyRental`.`guest` (`guestID`, `userName`, `password`, `firstName`, `lastName`, `description`, `joinDate`, `email`, `phoneNumber`) VALUES
-(30000001, 'guestUser1', 'guest1234', 'David', 'Wilson', 'Frequent traveler', '2023-01-01', 'david.wilson@example.com', '1231231234'),
-(30000002, 'guestUser2', 'guest5678', 'Emily', 'Taylor', 'Adventure seeker', '2023-02-10', 'emily.taylor@example.com', '2342342345'),
-(30000003, 'guestUser3', 'guest9101', 'Michael', 'Martinez', 'Business traveler', '2023-03-15', 'michael.m@example.com', '3453453456'),
-(30000004, 'guestUser4', 'guest1123', 'Sarah', 'Anderson', 'Family vacationer', '2023-04-20', 'sarah.ad@example.com', '4564564567'),
-(30000005, 'guestUser5', 'guest3141', 'Chris', 'Lee', 'Culture enthusiast', '2023-05-25', 'chris.lee@example.com', '5675675678');
+(10000001, 'guestUser1', 'guest1234', 'David', 'Wilson', 'Frequent traveler', '2023-01-01', 'david.wilson@example.com', '1231231234'),
+(10000002, 'guestUser2', 'guest5678', 'Emily', 'Taylor', 'Adventure seeker', '2023-02-10', 'emily.taylor@example.com', '2342342345'),
+(10000003, 'guestUser3', 'guest9101', 'Michael', 'Martinez', 'Business traveler', '2023-03-15', 'michael.m@example.com', '3453453456'),
+(10000004, 'guestUser4', 'guest1123', 'Sarah', 'Anderson', 'Family vacationer', '2023-04-20', 'sarah.ad@example.com', '4564564567'),
+(10000005, 'guestUser5', 'guest3141', 'Chris', 'Lee', 'Culture enthusiast', '2023-05-25', 'chris.lee@example.com', '5675675678');
 
 -- -----------------------------------------------------
 -- Table `propertyRental`.`reservation`
