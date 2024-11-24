@@ -4,6 +4,7 @@
 <html>
     <title>Payment Transaction</title>
     <body>
+        <h2>Payment</h2>
         <%
             int reservationID = (int) session.getAttribute("reservationID");
             reservation reservationRecord = reservation.getReservationRecord(reservationID);
@@ -21,7 +22,7 @@
             <input type="submit" value="Confirm Payment">
         </form>
             <br> <form action="delete_reservation.jsp" method="POST">
-            <input type="hidden" name="propertytID" value="<%= reservationRecord.propertyListingID%>">
+            <input type="hidden" name="guestID" value="<%= reservationRecord.guestID%>">
             <input type="hidden" name="reservationID" value="<%= reservationRecord.reservationID%>">
             <button type="submit"> Back </button>
         </form>    </body>

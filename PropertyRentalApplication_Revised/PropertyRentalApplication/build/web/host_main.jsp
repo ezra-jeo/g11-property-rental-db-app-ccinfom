@@ -38,9 +38,9 @@
             <input type="hidden" name="hostID" value="<%= hostID%>">
             <button type="submit"> Update Listing</button>
         </form>
-        <br><form action="view_reservations_host.jsp" method="POST">
+        <br><form action="view_earnings_reservations.jsp" method="POST">
             <input type="hidden" name="hostID" value="<%= hostID%>">
-            <button type="submit"> View Reservations</button>
+            <button type="submit"> View Reservations & Earnings</button>
         </form>
             <br><form action="viewGuestRating.jsp" method="POST">
             <input type="hidden" name="hostID" value="<%= hostID%>">

@@ -8,6 +8,7 @@
         <title>Guest Edit</title>
     </head>
     <body>
+        <h2>Edit Guest Account</h2>
         <%
             int guestID = Integer.parseInt(request.getParameter("guestID"));
             guest guestRecord = guest.getGuestRecord(guestID);

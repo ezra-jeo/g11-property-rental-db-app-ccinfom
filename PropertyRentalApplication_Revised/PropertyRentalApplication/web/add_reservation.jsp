@@ -34,7 +34,8 @@
         <label for="propertyListingID">Choose a Property:</label>
         <select id="propertyListingID" name="propertyListingID" required>
             <%
-                int guestID = Integer.parseInt(request.getParameter("guestID"));
+                int guestID = (int) session.getAttribute("guestID");
+                //int guestID = Integer.parseInt(request.getParameter("guestID"));
                 Property property = new Property();
                 property.getAllProperties(); 
                 for (Property prop : property.getPropertyList()) {

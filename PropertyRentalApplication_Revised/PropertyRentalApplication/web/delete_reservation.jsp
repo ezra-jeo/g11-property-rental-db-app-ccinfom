@@ -10,9 +10,9 @@
     <body>
         <%
             int reservationID = Integer.parseInt(request.getParameter("reservationID"));
-            int propertyID = Integer.parseInt(request.getParameter("propertyListingID"));
+            int guestID = Integer.parseInt(request.getParameter("guestID"));
             reservation.deleteReservationRecord(reservationID);
-            session.setAttribute("propertyListingID", propertyID);
+            session.setAttribute("guestID", guestID);
             response.sendRedirect("add_reservation.jsp");
         %>
     </body>

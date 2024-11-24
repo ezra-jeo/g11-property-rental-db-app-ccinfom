@@ -26,9 +26,9 @@
             <input type="hidden" name="guestID" value="<%= guestID%>">
             <button type="submit"> Add Reservation</button>
         </form>
-         <form action="view_reservations_guest.jsp" method="POST">
+         <form action="view_reservations_payments.jsp" method="POST">
             <input type="hidden" name="guestID" value="<%= guestID%>">
-            <button type="submit"> View Reservations</button>
+            <button type="submit"> View Reservations & Payments</button>
         </form>
         </form>
             <br><form action="viewHostRating.jsp" method="POST">

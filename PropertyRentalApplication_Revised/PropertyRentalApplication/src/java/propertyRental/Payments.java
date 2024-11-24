@@ -54,12 +54,48 @@ public class Payments {
             return 0;
         }
         return 1;
+    }
+    
+    public Payments getPaymentRecord(int reservationID) {
+        Payments p = null;
+        float vamount = 0;
+        String vmode = "";
+                
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
+            Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/propertyrental?useSSL=false&serverTimezone=UTC",
+                "root",
+                "ethanaxl1"
+            );
+            
+            
+            PreparedStatement pstst = conn.prepareStatement("SELECT amount, mode FROM transaction WHERE reservationID = ?;");
+            pstst.setInt(1, reservationID);
+            ResultSet rs = pstst.executeQuery();
+           
+            
+            while (rs.next()) {
+                vamount = rs.getFloat("amount");
+                vmode = rs.getString("mode");
+            }
+            
+            p = new Payments();
+            p.amount = vamount;
+            p.mode = vmode;
+           
+            pstst.close();
+            conn.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+        return p;
     }
 
     public static void main(String[] args) {
     }
-
-
-
 }

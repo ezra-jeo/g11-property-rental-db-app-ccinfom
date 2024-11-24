@@ -8,6 +8,7 @@
         <title>Host Edit</title>
     </head>
     <body>
+        <h2>Edit Host Account</h2>
         <%
             int hostID = Integer.parseInt(request.getParameter("hostID"));
             host hostRecord = host.getHostRecord(hostID);
