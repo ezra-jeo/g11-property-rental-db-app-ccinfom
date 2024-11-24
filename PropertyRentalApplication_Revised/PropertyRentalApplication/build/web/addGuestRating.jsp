@@ -21,7 +21,7 @@
                         for (reservation reservation : reservation.getReservationHost(Integer.parseInt(request.getParameter("hostID")))) {
                 %>
                             <option value="<%= reservation.reservationID %>">
-                                <%= reservation.guestID %>
+                                <%= String.format("Guest: %s - Reservation: %s", guest.getGuestRecord(reservation.guestID).userName, reservation.reservationID) %>
                             </option>
                 <%
                         }
@@ -38,7 +38,10 @@
             Review: <textarea id="review" name="review" rows="4" cols="50" placeholder="Write your review here..." required></textarea><br><br>
             
             <input type="submit" value="Submit Rating">
-        </form>
+        </form><br>
+        <a href="host_main.jsp">
+                <button type="button">Back</button>
+        </a>
     </body>
 </html>
 

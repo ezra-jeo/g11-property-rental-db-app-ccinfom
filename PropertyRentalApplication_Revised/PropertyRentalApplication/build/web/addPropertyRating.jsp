@@ -17,11 +17,11 @@
             reservation ID:
             <select id="reservationID" name="reservationID" required>
                 <%
-                    if (reservation.getReservationProperty(Integer.parseInt(request.getParameter("propertyListingID"))) != null) {
-                        for (reservation reservation : reservation.getReservationProperty(Integer.parseInt(request.getParameter("propertyListingID")))) {
+                    if (reservation.getReservationGuest(Integer.parseInt(request.getParameter("guestID"))) != null) {
+                        for (reservation reservation : reservation.getReservationGuest(Integer.parseInt(request.getParameter("guestID")))) {
                 %>
                             <option value="<%= reservation.reservationID %>">
-                                <%= reservation.propertyListingID %>
+                                <%= String.format("Property: %d Reservation: %d", reservation.propertyListingID, reservation.reservationID) %>
                             </option>
                 <%
                         }
@@ -37,6 +37,9 @@
             Review: <textarea id="review" name="review" rows="4" cols="50" placeholder="Write your review here..." required></textarea><br><br>
             
             <input type="submit" value="Submit Rating">
-        </form>
+        </form><br>
+        <a href="host_main.jsp">
+                <button type="button">Back</button>
+        </a>
     </body>
 </html>

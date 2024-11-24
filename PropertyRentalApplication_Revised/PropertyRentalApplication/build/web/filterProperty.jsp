@@ -16,6 +16,9 @@
 
 
             <input type="submit" value="submit">
-        </form>
+        </form><br>
+        <a href="host_main.jsp">
+                <button type="button">Back</button>
+        </a>
     </body>
 </html>

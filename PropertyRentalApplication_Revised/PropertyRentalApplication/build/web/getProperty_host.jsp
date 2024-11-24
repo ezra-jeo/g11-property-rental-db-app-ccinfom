@@ -12,6 +12,9 @@
         <form action="getProperty_host_process.jsp">
             Enter host username: <input type="text" id="host_name" name="host_name"><br>
             <input type="submit" value="submit">
-        </form>
+        </form><br>
+        <a href="host_main.jsp">
+                <button type="button">Back</button>
+        </a>
     </body>
 </html>

@@ -32,6 +32,9 @@
                 %>
             </select><br><br>
             <input type="submit" value="Submit">
-        </form>
+        </form><br>
+        <a href="host_main.jsp">
+                <button type="button">Back</button>
+        </a>
     </body>
 </html>

@@ -42,8 +42,10 @@
                     out.println("<h2>Register Unsuccessful</h2><br>");
                 }
             %>
-            <br><form action="host_main.jsp" method="POST">
-            <button type="submit"> Back </button>
+            <br>
+            <a href="host_main.jsp">
+                <button type="button">Back</button>
+            </a>
             
     </body>
 </html>

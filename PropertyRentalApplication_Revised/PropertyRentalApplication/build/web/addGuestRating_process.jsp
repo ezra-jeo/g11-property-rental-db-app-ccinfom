@@ -24,9 +24,10 @@
                 out.println("<h2>Rating Unsuccessful</h2><br>");
             }
          %>
-        <br><form action="host_main.jsp" method="POST">
-            <button type="submit"> Back </button>
-        </form> 
+        <br>
+        <a href="host_main.jsp">
+                <button type="button">Back</button>
+        </a>
     </body>
 </html>
 

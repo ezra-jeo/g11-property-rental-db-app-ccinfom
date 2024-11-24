@@ -28,7 +28,9 @@
             out.println("<h2>Filter Unsuccessful</h2><br>");
             }
          %>
-        <br><form action="guest_main.jsp" method="POST">
-            <button type="submit"> Back </button>
+        <br>
+        <a href="guest_main.jsp">
+                <button type="button">Back</button>
+        </a>
     </body>
 </html>
