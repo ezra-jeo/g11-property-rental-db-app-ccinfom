@@ -13,7 +13,7 @@
             <jsp:useBean id="property" class="propertyRental.Property" scope="session"/>
             <h1>View Listing</h1>
             <% 
-                String v_hostID = request.getParameter("hostID");
+                int v_hostID = Integer.parseInt(request.getParameter("hostID"));
                 int status = property.getProperties(v_hostID);
                
                 if (status == 1) {
