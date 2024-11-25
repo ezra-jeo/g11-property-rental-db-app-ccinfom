@@ -17,7 +17,6 @@
                 int status = property.getProperties(v_hostID);
                
                 if (status == 1) {
-                    out.println("<h1>View Listings</h1><br>");
                     for (Property prop : property.getPropertyList()) {
                        out.println(" <p> " + prop.getInfo() + "</p><br>"); 
                     }
