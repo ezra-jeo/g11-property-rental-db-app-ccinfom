@@ -30,7 +30,7 @@
             <input type="hidden" name="hostID" value="<%= hostID%>">
             <button type="submit"> Remove Listing</button>
         </form>
-        <form action="getProperty_host.jsp" method="POST">
+        <form action="getProperty_host_process.jsp" method="POST">
             <input type="hidden" name="hostID" value="<%= hostID%>">
             <button type="submit"> View Listing</button>
         </form>

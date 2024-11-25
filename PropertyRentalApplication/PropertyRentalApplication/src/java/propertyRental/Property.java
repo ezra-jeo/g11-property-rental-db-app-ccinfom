@@ -57,7 +57,7 @@ public class Property {
                 "ethanaxl1"
             );
             
-            PreparedStatement st = conn.prepareStatement("SELECT "
+            PreparedStatement st = conn.prepareStatement("SELECT *"
                     + "FROM propertylisting pl "
                     + "WHERE pl.hostID = ?");
             

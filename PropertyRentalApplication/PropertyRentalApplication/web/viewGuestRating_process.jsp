@@ -29,7 +29,7 @@
                 out.println("<h2>Information Generated Unsuccessfully</h2><br>");
             }
         %>
-        <br
+        <br>
         <a href="host_main.jsp">
             <button type="button">Back</button>
         </a>    </body>

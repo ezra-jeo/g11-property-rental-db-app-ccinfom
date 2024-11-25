@@ -11,7 +11,7 @@
     <body>
         <jsp:useBean id="property" class="propertyRental.Property" scope="session"/>
         <% 
-                int v_hostID = Integer.parseInt(request.getParameter("host_ID"));
+                int v_hostID = Integer.parseInt(request.getParameter("hostID"));
                 int v_propertyID = Integer.parseInt(request.getParameter("propertyListingID")); 
                
                 int status = property.deleteListing(v_hostID, v_propertyID);
